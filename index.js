@@ -1,103 +1,86 @@
-//const form = document.getElementById('guestform');
-//const guestList = document.getElementById('guestList'); //display list of guests
+// Initialize empty array to store guest objects
+let myGuests = [];
 
-//let myGuests = []; //empty array that store guest objects like names
+// Get DOM elements
+const form = document.getElementById('guestForm');
+const guestList = document.getElementById('guestList');
 
-//form.addEventListener('submit', function(event){
-    //event.preventDefault(); //stops the form from refreshing the page
-    // get the values that the user has keyed in the form
-    //const firstName = document.getElementById('fname').value.trim(); //trim removes white spaces that are extra
-    //const lastName = document.getElementById('lname').value.trim();
-    //const phone = document.getElementById('phone').value.trim();
-    //const category = document.getElementById('category').value;
-
-    //alerts the user if the required fields are empty
-    //if(!firstName || !lastName || !phone){
-        //alert("please fill in the required fields");
-        //return;
-   // }
+// Add event listener for form submission
+form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent page refresh
     
-    //user is alert if the guest list has reached the limit(10)
-    //if(myGuests.length >=10){
-        //alert("The guest list has reached the limit.");
-        //return;
-    //}
-    //const newGuest = {
-        //id: Date.now(),
-        //firstName,
-        //lastName,
-        //phone,
-        //category,
-        //attending: true,
-        //addedAt: new Date().toLocaleTimeString()
-    //};
+    // Get form values
+    const firstName = document.getElementById('fname').value.trim();
+    const lastName = document.getElementById('lname').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const category = document.getElementById('category').value;
 
-    //myGuests.push(newGuest);
-    //form.requestFullscreen();
-    //renderGuests();
-//});
+    // Validate required fields
+    if(!firstName || !lastName || !phone) {
+        alert("Please fill in all required fields");
+        return;
+    }
+    
+    // Check if guest list has reached limit
+    if(myGuests.length >= 10) {
+        alert("The guest list has reached the limit.");
+        return;
+    }
+    
+    // Create new guest object
+    const newGuest = {
+        id: Date.now(),
+        firstName,
+        lastName,
+        phone,
+        category,
+        attending: true,
+        addedAt: new Date().toLocaleTimeString()
+    };
 
-//function renderGuests() {
- // guestList.innerHTML = '';
+    // Add to guests array
+    myGuests.push(newGuest);
+    
+    // Reset form
+    form.reset();
+    
+    // Update the display
+    renderGuests();
+});
 
-  //guests.forEach(guest => {
-    //const li = document.createElement('li');
-    //li.className = `guest ${guest.category}`;
+// Function to render the guest list
+function renderGuests() {
+    guestList.innerHTML = '';
 
-   // li.innerHTML = `
-      //<div>
-        //<strong>${guest.firstName} ${guest.lastName}</strong> - 
-        //<em>${guest.phone}</em><br>
-        //<span>Category: ${guest.category}</span> |
-        //<span>Status: ${guest.attending ? 'Attending' : 'Not Attending'}</span><br>
-        //<span class="timestamp">Added at: ${guest.addedAt}</span>
-      //</div>
-      //<div class="actions">
-        //<button onclick="toggleRSVP(${guest.id})">Toggle RSVP</button>
-        //<button onclick="editGuest(${guest.id})">Edit</button>
-        //<button onclick="removeGuest(${guest.id})">Remove</button>
-     // </div>
-    //`;
+    myGuests.forEach(guest => {
+        const li = document.createElement('li');
+        li.className = guest.category;
 
-    //guestList.appendChild(li);
-  //});
-//}
+        li.innerHTML = `
+            <div>
+                <strong>${guest.firstName} ${guest.lastName}</strong> - 
+                <em>${guest.phone}</em><br>
+                <span>Category: ${guest.category}</span> | 
+                <span>Status: ${guest.attending ? 'Attending' : 'Not Attending'}</span>
+            </div>
+            <div class="actions">
+                <button onclick="toggleRSVP(${guest.id})">Toggle RSVP</button>
+                <button onclick="removeGuest(${guest.id})">Remove</button>
+            </div>
+        `;
 
-//function toggleRSVP(id) {
-  //guests = guests.map(g => g.id === id ? { ...g, attending: !g.attending } : g);
-  //renderGuests();
-//}
+        guestList.appendChild(li);
+    });
+}
 
-//function editGuest(id) {
-  //const guest = guests.find(g => g.id === id);
-  //if (!guest) return;
+// Function to toggle attendance status
+function toggleRSVP(id) {
+    myGuests = myGuests.map(g => g.id === id ? { ...g, attending: !g.attending } : g);
+    renderGuests();
+}
 
-  //const newFirst = prompt("Edit first name:", guest.firstName);
-  //const newLast = prompt("Edit last name:", guest.lastName);
-  //if (newFirst && newLast) {
-    //guest.firstName = newFirst.trim();
-    //guest.lastName = newLast.trim();
-    //renderGuests();
-  //}
-//}
-
-//function removeGuest(id) {
-  //guests = guests.filter(g => g.id !== id);
-  //renderGuests();
-//}
-
-
-//class work
-
-let submit = document.querySelector("button")
-submit.addEventListener('click',SubmitEvent)
-
-function SubmitEvent(){
-  let userInput = document.getElementById("fname").value
-  //console.log("userInput")
-  let outputArea = document.querySelector(".output")
-  let li = document.createElement("li")
-  li.innerHTML = userInput
-  outputArea.appendChild(li)
-  //console.log(li)
+// Function to remove a guest
+function removeGuest(id) {
+    myGuests = myGuests.filter(g => g.id !== id);
+    renderGuests();
 }

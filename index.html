@@ -4,39 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Guest List Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <script src="./index.js" defer></script>
 </head>
 <body>
-    <h1>Guest List</h1>
-    <!-- used id so that all the input fields can be easily accessed in javascript-->
-   <!-- <form id="guestForm"> -->
-        <div>
-            <label for="fname">FirstName</label>
-            <input required type="text" placeholder="Enter first name" id="fname" name="firstname">
-            <!--<label for="lname">LastName</label>
-            <input required type="text" placeholder="Enter last name" id="lname" name="lastname">-->
-        </div>
-        <div>
-            <ul class="output">
-
-            </ul>
-        </div>
-        <!--<div>
-            <label for="phone">Phone Number</label>
-            <input required type="tel" id="phone" name="phone">
-        </div>
-        <div>
-            <select id="category" name="category" size="1">
-                <option value="friend">Friend</option>
-                <option value="family">Family</option>
-                <option value="colleague">Colleague</option>
-            </select>
-        </div>-->
-        <div>
-            <button type="submit">Submit</button>
-        </div>
-   <!-- </form> -->
-   <!--<ul id="guestList"></ul> <!-- it hold the guest list entries-->
+    <div class="container">
+        <h1>Event Guest List</h1>
+        <form id="guestForm"> 
+            <div>
+                <label for="fname">First Name</label>
+                <input required type="text" placeholder="Enter first name" id="fname" name="firstname">
+            </div>
+            <div>
+                <label for="lname">Last Name</label>
+                <input required type="text" placeholder="Enter last name" id="lname" name="lastname">
+            </div>
+            <div>
+                <label for="phone">Phone Number</label>
+                <input required type="tel" id="phone" name="phone" placeholder="Enter phone number">
+            </div>
+            <div>
+                <label for="category">Guest Category</label>
+                <select id="category" name="category">
+                    <option value="friend">Friend</option>
+                    <option value="family">Family</option>
+                    <option value="colleague">Colleague</option>
+                </select>
+            </div>
+            <div>
+                <button id="nameSmt" type="submit">Add Guest</button>
+            </div>
+        </form>
+        <ul id="guestList"></ul>
+    </div>
 </body>
 </html>
