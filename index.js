@@ -110,7 +110,7 @@ function renderGuests() {
     });
 }
 
-// Edit guest
+// Edit guest details
 function editGuest(id) {
     const guest = myGuests.find(g => g.id === id);
     if (guest) {
