@@ -52,7 +52,8 @@ Clone the repository using the link below or open it directly in your browser:
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first
+Pull requests are welcome. 
+For major changes, please open an issue first
 to discuss what you would like to change.
 
 ## License
