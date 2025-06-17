@@ -4,28 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Guest List Manager</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <script src="./index.js" defer></script>
 </head>
 <body>
+    <!-- Main container for all content -->
     <div class="container">
-        <h1>Event Guest List</h1>
+        <!-- Page heading -->
+        <h1>Event Guest List Form</h1>
+        
+        <!-- Guest input form -->
         <form id="guestForm"> 
+            <!-- First name input field -->
             <div>
                 <label for="fname">First Name</label>
                 <input required type="text" placeholder="Enter first name" id="fname" name="firstname">
             </div>
+            
+            <!-- Last name input field -->
             <div>
                 <label for="lname">Last Name</label>
                 <input required type="text" placeholder="Enter last name" id="lname" name="lastname">
             </div>
+            
+            <!-- Phone number input field - only accepts numbers -->
             <div>
                 <label for="phone">Phone Number</label>
-                <input required type="tel" id="phone" name="phone" placeholder="Enter phone number">
+                <input required type="tel" id="phone" name="phone" placeholder="Enter phone number" pattern="[0-9]*" inputmode="numeric">
             </div>
+            
+            <!-- Dropdown menu to select guest category -->
             <div>
                 <label for="category">Guest Category</label>
                 <select id="category" name="category">
@@ -34,10 +43,14 @@
                     <option value="colleague">Colleague</option>
                 </select>
             </div>
+            
+            <!-- Submit button to add or update a guest -->
             <div>
                 <button id="nameSmt" type="submit">Add Guest</button>
             </div>
         </form>
+        
+        <!-- Container for the dynamic guest list -->
         <ul id="guestList"></ul>
     </div>
 </body>
