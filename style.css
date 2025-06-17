@@ -1,145 +1,135 @@
-/* Global styles */
 * {
-  box-sizing: border-box; /* Include padding and border in element's width and height */
-  font-family: Arial, sans-serif; /* Set default font for all elements */
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
-/* Body styles */
 body {
-  background-color: #f5f5f5; /* Light gray background */
-  padding: 20px; /* Add space around the content */
+  background-color: #f5f5f5;
+  padding: 20px;
 }
 
 /* Container for centering content */
 .container {
-  max-width: 800px; /* Limit width on larger screens */
-  margin: 0 auto; /* Center the container horizontally */
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 /* Main heading styles */
 h1 {
-  text-align: center; /* Center the heading text */
-  margin-bottom: 20px; /* Add space below the heading */
-  color: #2c3e50; /* Dark blue-gray color */
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2c3e50;
 }
 
 /* Guest form styles */
 #guestForm {
-  background-color: #e0c3fc; /* Light purple background */
-  padding: 20px; /* Add space inside the form */
-  border-radius: 8px; /* Rounded corners */
-  margin-bottom: 20px; /* Space below the form */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
-  max-width: 800px; /* Limit width */
-  margin: 0 auto 20px auto; /* Center horizontally with space below */
+  background-color: #e0c3fc;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto 20px auto;
 }
 
-/* Form field container styles */
+/* Form field container */
 #guestForm div {
-  margin-bottom: 15px; /* Space between form fields */
-  display: flex; /* Use flexbox for layout */
-  align-items: center; /* Vertically center items */
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
 }
 
-/* Label styles */
+/* Labels */
 label {
-  display: inline-block; /* Allow width to be set */
-  width: 120px; /* Fixed width for labels */
-  margin-right: 10px; /* Space between label and input */
-  font-weight: bold; /* Make labels stand out */
+  display: inline-block;
+  width: 120px;
+  margin-right: 10px;
+  font-weight: bold;
 }
 
-/* Input and select field styles */
+/* Form controls */
 input, select {
-  padding: 8px; /* Space inside the fields */
-  border: 1px solid #ddd; /* Light gray border */
-  border-radius: 4px; /* Rounded corners */
-  width: 250px; /* Fixed width for inputs */
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 250px;
 }
 
-/* Button styles */
+/* Buttons */
 button {
-  background-color: #3498db; /* Blue background */
-  color: white; /* White text */
-  border: none; /* Remove default border */
-  padding: 10px 15px; /* Space inside buttons */
-  border-radius: 4px; /* Rounded corners */
-  cursor: pointer; /* Hand cursor on hover */
-  font-weight: bold; /* Bold text */
-  transition: background-color 0.2s; /* Smooth transition for hover effect */
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
 }
 
-/* Button hover effect */
 button:hover {
-  background-color: #2980b9; /* Darker blue on hover */
+  background-color: #2980b9;
 }
 
-/* Guest list container styles */
+/* Guest list container*/
 #guestList {
-  list-style-type: none; /* Remove bullet points */
-  padding: 0; /* Remove default padding */
-  background-color: white; /* White background */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  max-width: 800px; /* Limit width */
-  margin: 0 auto; /* Center horizontally */
+  list-style-type: none;
+  padding: 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-/* Guest list item styles */
+/* Guest list items */
 #guestList li {
-  padding: 10px 15px; /* Space inside list items */
-  border-bottom: 1px solid #eee; /* Light separator between items */
-  display: flex; /* Use flexbox for layout */
-  justify-content: space-between; /* Push content to edges */
-  align-items: center; /* Vertically center content */
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* Remove border from last list item */
 #guestList li:last-child {
   border-bottom: none;
 }
 
-/* Friend category indicator */
-.friend {
-  border-left: 4px solid #2ecc71; /* Green left border */
+/* Category buttons */
+button.friend-btn {
+  background-color: #2ecc71;
 }
 
-/* Family category indicator */
-.family {
-  border-left: 4px solid #3498db; /* Blue left border */
+button.family-btn {
+  background-color: #3498db;
 }
 
-/* Colleague category indicator */
-.colleague {
-  border-left: 4px solid #e74c3c; /* Red left border */
+button.colleague-btn {
+  background-color: #e74c3c;
 }
 
-/* Action buttons container */
+/* Action buttons */
 .actions {
-  display: flex; /* Use flexbox for layout */
-  gap: 8px; /* Space between buttons */
+  display: flex;
+  gap: 8px;
 }
 
-/* Smaller buttons in the list */
 .actions button {
-  padding: 6px 12px; /* Less padding for smaller buttons */
-  font-size: 14px; /* Smaller text */
+  padding: 6px 12px;
+  font-size: 14px;
 }
 
-/* Responsive styles for mobile devices */
+/* Responsive styles */
 @media (max-width: 768px) {
-  /* Stack form fields vertically on small screens */
   #guestForm div {
     flex-direction: column;
     align-items: flex-start;
   }
   
-  /* Adjust label spacing for vertical layout */
   label {
     margin-bottom: 5px;
   }
   
-  /* Make inputs full width on small screens */
   input, select {
     width: 100%;
   }

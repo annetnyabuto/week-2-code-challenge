@@ -1,4 +1,3 @@
-// Initialize empty array to store guest objects
 let myGuests = [];
 let editingGuestId = null;
 
@@ -23,19 +22,25 @@ form.addEventListener('submit', function(event) {
         return;
     }
     
-    // Validate phone number contains only digits
-    if(!/^\d+$/.test(phone)) {
-        alert("Phone number must contain only numbers");
-        return;
+    // Validate phone number - check if it contains only digits
+    for (let digit of phone) {
+        if (digit < '0' || digit > '9') {
+            alert("Phone number must contain only numbers");
+            return;
+        }
     }
     
     if (editingGuestId) {
         // Update existing guest
-        myGuests = myGuests.map(guest => 
-            guest.id === editingGuestId ? 
-            {...guest, firstName, lastName, phone, category} : 
-            guest
-        );
+        for (let i = 0; i < myGuests.length; i++) {
+            if (myGuests[i].id === editingGuestId) {
+                myGuests[i].firstName = firstName;
+                myGuests[i].lastName = lastName;
+                myGuests[i].phone = phone;
+                myGuests[i].category = category;
+                break;
+            }
+        }
         
         // Reset editing state
         editingGuestId = null;
@@ -50,10 +55,7 @@ form.addEventListener('submit', function(event) {
         // Add new guest
         myGuests.push({
             id: Date.now(),
-            firstName,
-            lastName,
-            phone,
-            category,
+            firstName, lastName, phone, category,
             attending: true,
             addedAt: new Date().toLocaleTimeString()
         });
@@ -63,34 +65,52 @@ form.addEventListener('submit', function(event) {
     renderGuests();
 });
 
-// Function to render the guest list
+// Render guest list
 function renderGuests() {
     guestList.innerHTML = '';
 
     myGuests.forEach(guest => {
         const li = document.createElement('li');
-        li.className = guest.category;
-
-        li.innerHTML = `
-            <div>
-                <strong>${guest.firstName} ${guest.lastName}</strong> - 
-                <em>${guest.phone}</em><br>
-                <span>Category: ${guest.category}</span> | 
-                <span>Status: ${guest.attending ? 'Attending' : 'Not Attending'}</span><br>
-                <small>Added at: ${guest.addedAt}</small>
-            </div>
-            <div class="actions">
-                <button onclick="editGuest(${guest.id})">Edit</button>
-                <button onclick="toggleRSVP(${guest.id})">Toggle RSVP</button>
-                <button onclick="removeGuest(${guest.id})">Remove</button>
-            </div>
+        
+        // Guest info
+        const infoDiv = document.createElement('div');
+        infoDiv.innerHTML = `
+            <strong>${guest.firstName} ${guest.lastName}</strong> - 
+            <em>${guest.phone}</em><br>
+            Category: ${guest.category} | 
+            Status: ${guest.attending ? 'Attending' : 'Not Attending'}<br>
+            <small>Added at: ${guest.addedAt}</small>
         `;
-
+        
+        // Action buttons
+        const actionsDiv = document.createElement('div');
+        actionsDiv.className = 'actions';
+        
+        // Edit button with category color
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Edit';
+        editButton.className = `${guest.category}-btn`;
+        editButton.onclick = () => editGuest(guest.id);
+        
+        // Other buttons
+        const toggleButton = document.createElement('button');
+        toggleButton.textContent = 'Toggle RSVP';
+        toggleButton.onclick = () => toggleRSVP(guest.id);
+        
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.onclick = () => removeGuest(guest.id);
+        
+        // Add buttons to actions div
+        actionsDiv.append(editButton, toggleButton, removeButton);
+        
+        // Add everything to list item
+        li.append(infoDiv, actionsDiv);
         guestList.appendChild(li);
     });
 }
 
-// Function to edit a guest
+// Edit guest
 function editGuest(id) {
     const guest = myGuests.find(g => g.id === id);
     if (guest) {
@@ -104,16 +124,19 @@ function editGuest(id) {
     }
 }
 
-// Function to toggle attendance status
+// Toggle RSVP status
 function toggleRSVP(id) {
-    myGuests = myGuests.map(g => 
-        g.id === id ? {...g, attending: !g.attending} : g
-    );
+    for (let i = 0; i < myGuests.length; i++) {
+        if (myGuests[i].id === id) {
+            myGuests[i].attending = !myGuests[i].attending;
+            break;
+        }
+    }
     renderGuests();
 }
 
-// Function to remove a guest
+//remove a guest
 function removeGuest(id) {
-    myGuests = myGuests.filter(g => g.id !== id);
+    myGuests = myGuests.filter(guest => guest.id !== id);
     renderGuests();
 }
